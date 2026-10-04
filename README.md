@@ -2,9 +2,9 @@
 
 A Claude Code mod that puts a pixel dinosaur park under the spinner. A coral T-rex acts out what the agent is doing, and every failing test run brings the meteor closer.
 
-![A T-rex under the Claude Code spinner: two failing test runs bring a meteor in, a passing run breaks it up, then three failures in a row bring it down](docs/demo.gif)
+![A real Claude Code turn: the T-rex under the spinner as Claude runs a failing test three times, the meteor comes in and lands, then Claude reads the code and fixes the bug](docs/demo.gif)
 
-The same turn as an [MP4](docs/demo.mp4). It's the mod's own drawing code, driven through a scripted turn.
+A real turn in Claude Code, also as an [MP4](docs/demo.mp4): three failing test runs bring the meteor down, then Claude finds the bug and fixes it.
 
 It makes no model calls and costs no tokens. Nothing leaves your machine.
 

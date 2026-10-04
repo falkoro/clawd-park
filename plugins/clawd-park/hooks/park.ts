@@ -39,12 +39,14 @@ export function describe(tool: string, input: Record<string, unknown>): Step {
   return { kind: 'other', text: `using ${tool.startsWith('mcp__') ? tool.split('__')[1] : tool}` }
 }
 
-// A test run failed when it exited non-zero or its output counts failures.
+// A test run failed when it exited non-zero or its output counts failures:
+// "2 failed", "1 failing", or node --test's "ℹ fail 1" ("# fail 1" as TAP),
+// which still shows when the run is piped through grep or tail.
 // One that never ran (refused, rejected at the prompt, timed out) is neither.
 export function verdict(r: { deny?: unknown; isError?: boolean; text?: unknown }): 'pass' | 'fail' | undefined {
   if (r.deny) return undefined
   const text = String(r.text ?? '')
-  if (/\bFAIL(ED)?\b|\b[1-9]\d* (failed|failing|failures?)\b/.test(text) || (r.isError && /^Exit code [1-9]/m.test(text))) return 'fail'
+  if (/\bFAIL(ED)?\b|\b[1-9]\d* (failed|failing|failures?)\b|[ℹ#] fail [1-9]/.test(text) || (r.isError && /^Exit code [1-9]/m.test(text))) return 'fail'
   return r.isError ? undefined : 'pass'
 }
 
