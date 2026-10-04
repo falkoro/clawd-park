@@ -26,6 +26,10 @@ test('a test run fails on a non-zero exit or counted failures, and one that neve
   expect(verdict({ text: 'Tests: 0 failed, 12 passed' })).toBe('pass')
   expect(verdict({ text: 'Tests: 2 failed, 10 passed' })).toBe('fail')
   expect(verdict({ text: 'FAIL src/cart.test.ts' })).toBe('fail')
+  // node --test, piped through grep so the exit code is grep's
+  expect(verdict({ text: '✖ only the carnivores get meat\nℹ pass 0\nℹ fail 1' })).toBe('fail')
+  expect(verdict({ text: '# pass 0\n# fail 2' })).toBe('fail')
+  expect(verdict({ text: 'ℹ pass 1\nℹ fail 0' })).toBe('pass')
   expect(verdict({ isError: true, text: 'Exit code 1\nexpected 10, got 9.99' })).toBe('fail')
   expect(verdict({ isError: true, text: "The user doesn't want to proceed with this tool use." })).toBeUndefined()
   expect(verdict({ deny: 'blocked by a hook' })).toBeUndefined()
