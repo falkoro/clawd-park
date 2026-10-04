@@ -1,0 +1,14 @@
+{
+  "name": "clawd-park",
+  "owner": {
+    "name": "falkoro"
+  },
+  "description": "Clawd Park: a Claude Code mod that puts a pixel dinosaur park under the spinner, with a meteor your failing tests bring down",
+  "plugins": [
+    {
+      "name": "clawd-park",
+      "source": "./plugins/clawd-park",
+      "description": "A coral T-rex acts out the agent's work under the spinner; three failing test runs in a row and the meteor lands"
+    }
+  ]
+}
